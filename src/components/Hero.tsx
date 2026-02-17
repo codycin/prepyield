@@ -1,5 +1,4 @@
-import { useEntries, type Entry } from "../hooks/useEntries";
-import { useMemo, useState } from "react";
+import { useEntries } from "../hooks/useEntries";
 
 export default function Hero() {
   const [entries, setEntries] = useEntries();
