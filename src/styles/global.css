@@ -53,10 +53,17 @@ svg {
 body {
   -webkit-text-size-adjust: 100%;
 }
-body {
-  background-color: #212529;
-}
 
 .navbar {
-  padding-top: env(safe-area-inset-top);
+  position: relative; /* required for ::before positioning */
+}
+
+.navbar::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(-1 * env(safe-area-inset-top));
+  height: env(safe-area-inset-top);
+  background: inherit; /* uses bg-dark (or whatever bg- class you set) */
 }
