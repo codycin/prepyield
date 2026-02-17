@@ -55,15 +55,16 @@ body {
 }
 
 .navbar {
-  position: relative; /* required for ::before positioning */
+  position: relative;
+  z-index: 1;
 }
 
 .navbar::before {
   content: "";
   position: absolute;
+  top: calc(-1 * env(safe-area-inset-top));
   left: 0;
   right: 0;
-  top: calc(-1 * env(safe-area-inset-top));
   height: env(safe-area-inset-top);
-  background: inherit; /* uses bg-dark (or whatever bg- class you set) */
+  background-color: inherit;
 }
