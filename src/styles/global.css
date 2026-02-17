@@ -54,21 +54,23 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
-.navbar {
-  position: relative;
-  z-index: 1;
-}
-
-.navbar::before {
-  content: "";
-  position: absolute;
-  top: calc(-1 * env(safe-area-inset-top));
+.safe-area-top {
+  position: fixed;
+  top: 0;
   left: 0;
   right: 0;
   height: env(safe-area-inset-top);
-  background-color: inherit;
+  z-index: 1040; /* above navbar (bootstrap fixed is 1030) */
+  pointer-events: none; /* doesn't block clicks */
 }
 
-.safe-area-top {
-  height: env(safe-area-inset-top);
+.navbar.fixed-top {
+  padding-top: env(safe-area-inset-top);
+}
+body {
+  padding-top: calc(56px + env(safe-area-inset-top));
+}
+
+body {
+  background-color: white; /* or your site background */
 }

@@ -5,8 +5,7 @@ export default function Header() {
   return (
     <>
       <div className="safe-area-top bg-dark" />
-
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div className="container">
           {/* Brand */}
           <NavLink
