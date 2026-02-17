@@ -1,0 +1,51 @@
+body {
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+}
+.icon {
+  height: 32px;
+  width: auto;
+}
+.icon-wrap {
+  background-color: #fff;
+  padding: 6px;
+  border-radius: 6px;
+}
+
+.btn-primary {
+  background-color: #1e40af;
+  border-color: #1e40af;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.header {
+  background-color: grey;
+  padding: 1rem;
+  color: white;
+}
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  -webkit-text-size-adjust: 100%;
+}

@@ -1,16 +1,16 @@
-import { useState } from "react";
-import "./App.css";
+import Home from "./pages/Home";
+import Entries from "./pages/Entries";
+import Header from "./components/Header";
+import { Routes, Route } from "react-router-dom";
 
-function App() {
-  const [count, setCount] = useState(0);
-
+export default function App() {
   return (
-    <>
-      <h1>Prep Yield</h1>
-      <p>Count: {count}</p>
-      <button onClick={() => setCount(count + 1)}>Increment</button>
-    </>
+    <div>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/entries" element={<Entries />} />
+      </Routes>
+    </div>
   );
 }
-
-export default App;
