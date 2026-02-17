@@ -1,3 +1,7 @@
+:root {
+  --bs-navbar-bg: #212529; /* match your navbar bg */
+}
+
 body {
   font-family:
     system-ui,
@@ -48,4 +52,11 @@ svg {
 
 body {
   -webkit-text-size-adjust: 100%;
+}
+body {
+  background-color: #212529;
+}
+
+.navbar {
+  padding-top: env(safe-area-inset-top);
 }
