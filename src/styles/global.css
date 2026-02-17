@@ -68,3 +68,7 @@ body {
   height: env(safe-area-inset-top);
   background-color: inherit;
 }
+
+.safe-area-top {
+  height: env(safe-area-inset-top);
+}
