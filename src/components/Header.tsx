@@ -2,9 +2,14 @@
 import { NavLink } from "react-router-dom";
 import logo from "../assets/icon.png";
 
+type HeaderProps = {
+  darkMode: boolean;
+  setDarkMode: (v: boolean | ((prev: boolean) => boolean)) => void;
+};
+
 //Bootstrap's collapse component doesn't automatically close
 // when a link is clicked so I added that functionality manually.
-export default function Header() {
+export default function Header({ darkMode, setDarkMode }: HeaderProps) {
   const closeNavbar = () => {
     const nav = document.getElementById("mainNav");
     if (nav && nav.classList.contains("show")) {
@@ -51,24 +56,35 @@ export default function Header() {
           </button>
 
           {/* Links */}
-          <div className="collapse navbar-collapse nav-center-lg" id="mainNav">
-            <ul className="navbar-nav gap-lg-3">
-              <li className="nav-item">
-                <NavLink to="/" className="nav-link" onClick={closeNavbar}>
-                  Home
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink
-                  to="/entries"
-                  end
-                  className="nav-link"
-                  onClick={closeNavbar}
-                >
-                  Entry
-                </NavLink>
-              </li>
-            </ul>
+          <div className="collapse navbar-collapse" id="mainNav">
+            {/* Centered links (desktop) */}
+            <div className="nav-center-lg">
+              <ul className="navbar-nav gap-lg-3">
+                <li className="nav-item">
+                  <NavLink to="/" className="nav-link" onClick={closeNavbar}>
+                    Home
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    to="/entries"
+                    className="nav-link"
+                    onClick={closeNavbar}
+                  >
+                    Entry
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
+
+            {/* Dark mode button – far right on desktop */}
+            <button
+              type="button"
+              className="btn btn-sm btn-outline-secondary ms-lg-auto mt-3 mt-lg-0"
+              onClick={() => setDarkMode((d) => !d)}
+            >
+              {darkMode ? "Dark" : "Light"}
+            </button>
           </div>
         </div>
       </nav>

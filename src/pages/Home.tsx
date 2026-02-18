@@ -9,10 +9,12 @@ type HeroPageProps = {
 export default function Home({ darkMode }: HeroPageProps) {
   return (
     <>
-      <div className="container-fluid px-2 text-center">
+      <div className="container-fluid px-2 text-center mb-5">
         <Hero darkMode={darkMode} />
       </div>
-      <About />
+      <section className="container mt-5">
+        <About />
+      </section>
     </>
   );
 }

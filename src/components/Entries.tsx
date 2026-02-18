@@ -167,7 +167,9 @@ export default function Entries({ darkMode }: EntriesProps) {
   return (
     <div
       className={`container py-4 ${
-        darkMode ? "bg-dark text-light min-vh-100" : ""
+        darkMode
+          ? "bg-dark text-light min-vh-100"
+          : "bg-light text-dark min-vh-100"
       }`}
     >
       <h1 className="h3 mb-3 fw-semibold">Entries</h1>
@@ -357,7 +359,9 @@ export default function Entries({ darkMode }: EntriesProps) {
 
                         return (
                           <tr key={e.id}>
-                            <td className="text-muted small">
+                            <td
+                              className={`${darkMode ? "text-light small" : "text-muted small"}`}
+                            >
                               {new Date(e.createdAt).toLocaleDateString(
                                 "en-US",
                                 {

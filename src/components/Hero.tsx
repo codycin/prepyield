@@ -70,7 +70,9 @@ export default function Hero({ darkMode }: HeroProps) {
                 //Table of entries with inputs for "raw wanted" and buttons to "use" the calculated cooked needed amount.
                 <div className="table-responsive">
                   <table
-                    className={`table align-middle ${darkMode ? "table-dark" : ""}`}
+                    className={`table table-sm align-middle text-nowrap ${
+                      darkMode ? "table-dark" : ""
+                    }`}
                   >
                     <thead>
                       <tr>
@@ -136,7 +138,7 @@ export default function Hero({ darkMode }: HeroProps) {
                                       ? "bg-dark text-light border-secondary"
                                       : ""
                                   }`}
-                                  style={{ width: "50px" }}
+                                  style={{ width: "44px", padding: "2px 6px" }}
                                   inputMode="decimal"
                                   value={rawWantedStr}
                                   onChange={(ev) =>
@@ -156,7 +158,7 @@ export default function Hero({ darkMode }: HeroProps) {
                               </td>
                               <td>
                                 <button
-                                  className="btn btn-sm btn-outline-primary"
+                                  className="btn btn-sm btn-outline-primary px-2"
                                   onClick={() =>
                                     useEntry(id, cookedNeeded ?? 0)
                                   }
