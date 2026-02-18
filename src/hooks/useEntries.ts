@@ -1,3 +1,4 @@
+//Custom hook for managing entries in local storage
 import { useLocalStorageState } from "./UseLocalStorageState";
 import type { Unit } from "../utils/units";
 
@@ -9,6 +10,7 @@ export type Entry = {
   rawWeight: number;
   cookedWeight: number;
   unit?: Unit;
+  yieldPct: number;
 };
 
 const STORAGE_KEY = "rwcalc.entries.v1";

@@ -1,10 +1,24 @@
+//Header component with responsive navbar and logo
 import { NavLink } from "react-router-dom";
-import logo from "../assets/icon.png"; // optional
+import logo from "../assets/icon.png";
 
+//Bootstrap's collapse component doesn't automatically close
+// when a link is clicked so I added that functionality manually.
 export default function Header() {
+  const closeNavbar = () => {
+    const nav = document.getElementById("mainNav");
+    if (nav && nav.classList.contains("show")) {
+      const bsCollapse =
+        (window as any).bootstrap.Collapse.getInstance(nav) ||
+        new (window as any).bootstrap.Collapse(nav);
+      bsCollapse.hide();
+    }
+  };
+
   return (
     <>
-      <div className="safe-area-top bg-dark" />
+      {/* Background div to prevent content from showing through the transparent navbar on scroll. Always dark */}
+      <div className="bg-dark" />
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div className="container-fluid px-2">
           {/* Brand */}
@@ -40,12 +54,17 @@ export default function Header() {
           <div className="collapse navbar-collapse nav-center-lg" id="mainNav">
             <ul className="navbar-nav gap-lg-3">
               <li className="nav-item">
-                <NavLink to="/" className="nav-link">
+                <NavLink to="/" className="nav-link" onClick={closeNavbar}>
                   Home
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/entries" end className="nav-link">
+                <NavLink
+                  to="/entries"
+                  end
+                  className="nav-link"
+                  onClick={closeNavbar}
+                >
                   Entry
                 </NavLink>
               </li>

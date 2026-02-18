@@ -1,3 +1,4 @@
+//Utility functions for unit conversions and formatting.
 export type Unit = "g" | "oz";
 
 const G_PER_OZ = 28.349523125;

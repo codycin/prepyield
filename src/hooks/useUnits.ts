@@ -1,3 +1,4 @@
+//Custom hook for managing the selected unit (grams or ounces) in local storage
 import { useEffect, useState } from "react";
 import type { Unit } from "../utils/units";
 

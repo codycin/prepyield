@@ -1,5 +1,5 @@
 :root {
-  --bs-navbar-bg: #212529; /* match your navbar bg */
+  --bs-navbar-bg: #212529;
 }
 
 body {
@@ -8,7 +8,17 @@ body {
     -apple-system,
     BlinkMacSystemFont,
     sans-serif;
+  -webkit-text-size-adjust: 100%;
+  padding-top: calc(56px + env(safe-area-inset-top));
+  background-color: var(--bs-body-bg);
 }
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 .icon {
   height: 32px;
   width: auto;
@@ -30,18 +40,6 @@ body {
   margin-bottom: 1rem;
 }
 
-.header {
-  background-color: grey;
-  padding: 1rem;
-  color: white;
-}
-
-html,
-body {
-  width: 100%;
-  overflow-x: hidden;
-}
-
 img,
 video,
 canvas,
@@ -50,30 +48,10 @@ svg {
   height: auto;
 }
 
-body {
-  -webkit-text-size-adjust: 100%;
-}
-
-.safe-area-top {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: env(safe-area-inset-top);
-  z-index: 1040; /* above navbar (bootstrap fixed is 1030) */
-  pointer-events: none; /* doesn't block clicks */
-}
-
 .navbar.fixed-top {
   padding-top: env(safe-area-inset-top);
 }
-body {
-  padding-top: calc(56px + env(safe-area-inset-top));
-}
 
-body {
-  background-color: white; /* or your site background */
-}
 .navbar .container,
 .navbar .container-fluid {
   position: relative;
@@ -94,7 +72,6 @@ body {
   }
 }
 
-/* On mobile: keep collapse in normal flow so it drops below */
 @media (max-width: 991.98px) {
   .nav-center-lg {
     position: static;

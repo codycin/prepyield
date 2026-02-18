@@ -1,3 +1,4 @@
+//Custom hook for managing state that is synced with local storage.
 import { useEffect, useState } from "react";
 
 export function useLocalStorageState<T>(key: string, initialValue: T) {
@@ -14,7 +15,7 @@ export function useLocalStorageState<T>(key: string, initialValue: T) {
     try {
       localStorage.setItem(key, JSON.stringify(state));
     } catch {
-      // If storage is full or blocked, we just fail silently
+      //Fail silently if localStorage is unavailable or quota is exceeded
     }
   }, [key, state]);
 
