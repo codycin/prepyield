@@ -1,7 +1,6 @@
 {
   "name": "prepyield",
   "compatibility_date": "2026-02-18",
-  "assets": {
-    "directory": "./dist",
-  },
+  "main": "src/worker.ts",
+  "assets": { "directory": "./dist", "binding": "ASSETS" },
 }
