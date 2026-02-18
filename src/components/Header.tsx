@@ -6,7 +6,7 @@ export default function Header() {
     <>
       <div className="safe-area-top bg-dark" />
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div className="container">
+        <div className="container-fluid px-2">
           {/* Brand */}
           <NavLink
             to="/"
@@ -37,8 +37,8 @@ export default function Header() {
           </button>
 
           {/* Links */}
-          <div className="collapse navbar-collapse" id="mainNav">
-            <ul className="navbar-nav ms-auto gap-lg-3">
+          <div className="collapse navbar-collapse nav-center-lg" id="mainNav">
+            <ul className="navbar-nav gap-lg-3">
               <li className="nav-item">
                 <NavLink to="/" className="nav-link">
                   Home

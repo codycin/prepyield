@@ -2,7 +2,7 @@ import Hero from "../components/Hero";
 
 export default function Home() {
   return (
-    <div className="text-center">
+    <div className="container-fluid px-2 text-center">
       <Hero />
     </div>
   );

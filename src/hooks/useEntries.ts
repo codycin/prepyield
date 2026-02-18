@@ -1,4 +1,5 @@
 import { useLocalStorageState } from "./UseLocalStorageState";
+import type { Unit } from "../utils/units";
 
 export type Entry = {
   id: string;
@@ -7,6 +8,7 @@ export type Entry = {
   foodName: string;
   rawWeight: number;
   cookedWeight: number;
+  unit?: Unit;
 };
 
 const STORAGE_KEY = "rwcalc.entries.v1";

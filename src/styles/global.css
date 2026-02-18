@@ -74,3 +74,31 @@ body {
 body {
   background-color: white; /* or your site background */
 }
+.navbar .container,
+.navbar .container-fluid {
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .nav-center-lg {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+  }
+
+  .nav-center-lg .navbar-nav {
+    flex-direction: row;
+    gap: 1rem;
+  }
+}
+
+/* On mobile: keep collapse in normal flow so it drops below */
+@media (max-width: 991.98px) {
+  .nav-center-lg {
+    position: static;
+    transform: none;
+    width: 100%;
+  }
+}

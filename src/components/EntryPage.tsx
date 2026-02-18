@@ -1,5 +1,8 @@
 import { useMemo, useState } from "react";
 import { useEntries, type Entry } from "../hooks/useEntries";
+import { ozToG, gToOz } from "../utils/units";
+import { useUnit } from "../hooks/useUnits";
+import UnitToggle from "../components/UnitToggle";
 
 type Food = { id: string; name: string; note?: string };
 
@@ -21,14 +24,16 @@ function computeYield(raw: number, cooked: number) {
 }
 
 export default function EntryPage() {
+  //For entry local list
   const [entries, setEntries] = useEntries();
 
+  //For input strings
   const [foodId, setFoodId] = useState("chicken_breast");
   const [rawStr, setRawStr] = useState("");
   const [cookedStr, setCookedStr] = useState("");
 
+  //For Food select
   const selectedFood = useMemo(() => {
-    // replace with your FOODS lookup
     const foods: Food[] = [
       { id: "chicken_breast", name: "Chicken Breast" },
       { id: "rice", name: "Rice" },
@@ -37,25 +42,37 @@ export default function EntryPage() {
     return foods.find((f) => f.id === foodId) ?? foods[0];
   }, [foodId]);
 
+  //Parse to numbers
   const rawWeight = parsePosNumber(rawStr);
   const cookedWeight = parsePosNumber(cookedStr);
+  const { unit, setUnit } = useUnit("g");
 
+  //Check selection validity and only update results when both are valid positive numbers
   const currentResults = useMemo(() => {
     if (!Number.isFinite(rawWeight) || !Number.isFinite(cookedWeight))
       return null;
-    return computeYield(rawWeight, cookedWeight);
-  }, [rawWeight, cookedWeight]);
+
+    const rawG = unit === "g" ? rawWeight : ozToG(rawWeight);
+    const cookedG = unit === "g" ? cookedWeight : ozToG(cookedWeight);
+
+    if (!Number.isFinite(rawG) || !Number.isFinite(cookedG)) return null;
+    return computeYield(rawG, cookedG);
+  }, [rawWeight, cookedWeight, unit]);
 
   const addEntry = () => {
     if (!Number.isFinite(rawWeight) || !Number.isFinite(cookedWeight)) return;
+
+    const rawG = unit === "g" ? rawWeight : ozToG(rawWeight);
+    const cookedG = unit === "g" ? cookedWeight : ozToG(cookedWeight);
 
     const newEntry: Entry = {
       id: crypto.randomUUID(),
       createdAt: new Date().toISOString(),
       foodId,
       foodName: selectedFood.name,
-      rawWeight,
-      cookedWeight,
+      rawWeight: rawG,
+      cookedWeight: cookedG,
+      unit, // metadata: what the user entered in
     };
 
     setEntries((prev) => [newEntry, ...prev]);
@@ -95,7 +112,7 @@ export default function EntryPage() {
               </div>
 
               <div className="col-12 col-md-4">
-                <label className="form-label">Raw weight (g)</label>
+                <label className="form-label">Raw weight ({unit})</label>
                 <input
                   className="form-control"
                   value={rawStr}
@@ -104,7 +121,7 @@ export default function EntryPage() {
               </div>
 
               <div className="col-12 col-md-4">
-                <label className="form-label">Cooked weight (g)</label>
+                <label className="form-label">Cooked weight ({unit})</label>
                 <input
                   className="form-control"
                   value={cookedStr}
@@ -131,7 +148,7 @@ export default function EntryPage() {
               >
                 Clear inputs
               </button>
-
+              <UnitToggle unit={unit} setUnit={setUnit} />
               <button
                 className="btn btn-outline-danger ms-auto"
                 onClick={clearAll}
@@ -184,14 +201,35 @@ export default function EntryPage() {
                   </thead>
                   <tbody>
                     {entries.map((e) => {
+                      const entryUnit = e.unit ?? "g"; // fallback for older entries
+
+                      const rawDisplay =
+                        entryUnit === "g" ? e.rawWeight : gToOz(e.rawWeight);
+
+                      const cookedDisplay =
+                        entryUnit === "g"
+                          ? e.cookedWeight
+                          : gToOz(e.cookedWeight);
+
                       return (
                         <tr key={e.id}>
                           <td className="text-muted small">
-                            {new Date(e.createdAt).toLocaleString()}
+                            {new Date(e.createdAt).toLocaleDateString("en-US", {
+                              month: "2-digit",
+                              day: "2-digit",
+                            })}
                           </td>
                           <td>{e.foodName}</td>
-                          <td className="text-end">{e.rawWeight}</td>
-                          <td className="text-end">{e.cookedWeight}</td>
+
+                          <td className="text-end">
+                            {rawDisplay.toFixed(1)}
+                            {entryUnit}
+                          </td>
+
+                          <td className="text-end">
+                            {cookedDisplay.toFixed(1)}
+                            {entryUnit}
+                          </td>
 
                           <td className="text-end">
                             <button
