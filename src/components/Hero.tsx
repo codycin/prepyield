@@ -1,8 +1,6 @@
 import { useEntries } from "../hooks/useEntries";
 import { useState } from "react";
-import { ozToG, gToOz } from "../utils/units";
-import { useUnit } from "../hooks/useUnits";
-import UnitToggle from "../components/UnitToggle";
+import { gToOz } from "../utils/units";
 
 function parsePosNumber(s: string): number {
   const n = Number(s);
@@ -10,20 +8,11 @@ function parsePosNumber(s: string): number {
 }
 
 export default function Hero() {
-  const [entries, setEntries] = useEntries();
+  const [entries] = useEntries();
 
   const [rawWantedById, setRawWantedById] = useState<Record<string, string>>(
     {},
   );
-
-  const deleteEntry = (id: string) => {
-    setEntries((prev) => prev.filter((e) => e.id !== id));
-    setRawWantedById((prev) => {
-      const next = { ...prev };
-      delete next[id];
-      return next;
-    });
-  };
 
   return (
     <div className="container py-5">
@@ -81,12 +70,6 @@ export default function Hero() {
                         entryUnit === "g"
                           ? e.cookedWeight
                           : gToOz(e.cookedWeight);
-
-                      const rawWantedG = Number.isFinite(rawWanted)
-                        ? entryUnit === "g"
-                          ? rawWanted
-                          : ozToG(rawWanted)
-                        : NaN;
 
                       return (
                         <tr key={e.id}>
