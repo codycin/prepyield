@@ -53,11 +53,7 @@ export default function Entries({ darkMode }: EntriesProps) {
     () => [
       { id: "chicken_breast", name: "Chicken Breast" },
       { id: "chicken_thigh", name: "Chicken Thigh" },
-      { id: "ground_chicken", name: "Ground Chicken" },
-      { id: "turkey_breast", name: "Turkey Breast" },
-
-      { id: "ground_turkey_93_7", name: "Ground Turkey (93/7)" },
-      { id: "ground_turkey_96_4", name: "Ground Turkey (96/4)" },
+      { id: "cod", name: "Cod" },
 
       { id: "ground_beef_80_20", name: "Ground Beef (80/20)" },
       { id: "ground_beef_85_15", name: "Ground Beef (85/15)" },
@@ -65,21 +61,31 @@ export default function Entries({ darkMode }: EntriesProps) {
       { id: "ground_beef_93_7", name: "Ground Beef (93/7)" },
       { id: "ground_beef_96_4", name: "Ground Beef (96/4)" },
 
-      { id: "steak", name: "Steak" },
+      { id: "ground_chicken", name: "Ground Chicken" },
+
+      { id: "ground_turkey_93_7", name: "Ground Turkey (93/7)" },
+      { id: "ground_turkey_96_4", name: "Ground Turkey (96/4)" },
+
+      { id: "ham", name: "Ham" },
+      { id: "noodles", name: "Noodles" },
+      { id: "other", name: "Other" },
+
       { id: "pork_chop", name: "Pork Chop" },
       { id: "pork_loin", name: "Pork Loin" },
       { id: "pork_tenderloin", name: "Pork Tenderloin" },
-      { id: "ham", name: "Ham" },
-      { id: "rice", name: "Rice" },
+
       { id: "potato", name: "Potato" },
-      { id: "sweet_potato", name: "Sweet Potato" },
-      { id: "noodles", name: "Noodles" },
+      { id: "rice", name: "Rice" },
+
       { id: "salmon", name: "Salmon" },
-      { id: "tilapia", name: "Tilapia" },
-      { id: "cod", name: "Cod" },
-      { id: "tuna", name: "Tuna" },
       { id: "shrimp", name: "Shrimp" },
-      { id: "other", name: "Other" },
+      { id: "steak", name: "Steak" },
+      { id: "sweet_potato", name: "Sweet Potato" },
+
+      { id: "tilapia", name: "Tilapia" },
+      { id: "tuna", name: "Tuna" },
+
+      { id: "turkey_breast", name: "Turkey Breast" },
     ],
     [],
   );
